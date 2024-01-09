@@ -6,9 +6,19 @@ pipeline {
     }
     
     stages {
-        stage('Hello'){
+        stage('Build'){
             steps {
-                echo("Hello Pipeline")
+                echo("Hello build")
+            }
+        }
+        stage('Test'){
+            steps {
+                echo("Hello Test")
+            }
+        }
+        stage('Deploy'){
+            steps {
+                echo("Hello deploy")
             }
         }
     }
