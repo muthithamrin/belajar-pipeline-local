@@ -1,49 +1,31 @@
 pipeline {
-    agent{
-        node{
-            label "linux && java11"
-        }
+    agent any
+    
+    environment {
+        // Tentukan path lokal tempat Anda ingin melakukan clone repository
+        LOCAL_CLONE_PATH = "/Users/muthithamrin/documents"
     }
     
     stages {
-        stage('Build'){
+        stage('Clone Repository') {
             steps {
-                echo("Hello build 1")
-                sleep(5)
-                echo("Hello build 2")
-                echo("Hello build 3")
+                // Menghapus folder repository jika sudah ada sebelumnya
+                deleteDir()
+                
+                // Membuat folder untuk clone repository
+                dir(Jenkins-pipeline-coba-clone-by-jenkins) {
+                    // Melakukan clone dari repository GitHub
+                    git branch: 'main', url: 'git@github.com:muthithamrin/belajar-pipeline-local.git'
+                }
             }
         }
-        stage('Test'){
-            steps {
-                echo("Hello Test 1")
-                sleep(5)
-                echo("Hello Test 2")
-                echo("Hello Test 3")
-            }
-        }
-        stage('Deploy'){
-            steps {
-                echo("Hello deploy 1")
-                sleep(5)
-                echo("Hello deploy 2")
-                echo("Hello deploy 3")
-            }
-        }
+        // Tambahkan tahapan-tahapan lain sesuai kebutuhan Anda
     }
 
+    // Tambahkan post-build actions jika diperlukan
     post {
         always {
-            echo "i will always hello again"
-        }
-        success {
-            echo "yes, success!"
-        }
-        failure {
-            echo "oh no, failure!"
-        }
-        cleanup {
-            echo "dont care success or error"
+            // Tambahkan langkah-langkah yang perlu dijalankan setelah pipeline selesai
         }
     }
 }
