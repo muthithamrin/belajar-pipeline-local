@@ -15,7 +15,7 @@ pipeline {
                 // Membuat folder untuk clone repository
                 dir(Jenkins-pipeline-coba-clone-by-jenkins) {
                     // Melakukan clone dari repository GitHub
-                    git branch: 'main', url: 'git@github.com:muthithamrin/belajar-pipeline-local.git'
+                    git branch: 'main', url: 'https://github.com/muthithamrin/belajar-pipeline-local.git'
                 }
             }
         }
